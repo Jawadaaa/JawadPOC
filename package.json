@@ -1,0 +1,17 @@
+{
+  "name": "backend-poc",
+  "version": "1.0.0",
+  "description": "Assignment 3 - Full Stack Application Proof-of-Concept",
+  "main": "server/server.js",
+  "scripts": {
+    "start": "node server/server.js",
+    "test": "jest --detectOpenHandles"
+  },
+  "dependencies": {
+    "express": "^4.19.2"
+  },
+  "devDependencies": {
+    "jest": "^29.7.0",
+    "supertest": "^6.3.4"
+  }
+}
