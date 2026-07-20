@@ -14,6 +14,7 @@ class FoodDB {
     return this.foods;
   }
 }
-
+// Create a single instance of the FoodDB class to be used throughout the application
 const instance = new FoodDB();
+// Export the instance so that it can be imported and used in other files
 module.exports = instance;
