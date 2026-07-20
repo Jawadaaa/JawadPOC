@@ -1,4 +1,5 @@
 class FoodDB {
+    // This class simulates a database of food items. In a real application, you would replace this with actual database queries.
   constructor() {
     this.foods = [
       { id: 1, name: "Cheeseburger", price: 8.99 },
@@ -8,7 +9,7 @@ class FoodDB {
       { id: 5, name: "Chicken Tacos", price: 9.5 },
     ];
   }
-
+// Method to get all food items
   getAll() {
     return this.foods;
   }

@@ -1,68 +1,95 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <title>Food Menu - Backend POC</title>
-  <style>
-    body { font-family: Arial, sans-serif; margin: 2rem; }
-    table { border-collapse: collapse; width: 100%; max-width: 500px; }
-    th, td { border: 1px solid #ccc; padding: 8px 12px; text-align: left; }
-    th { background-color: #f0f0f0; }
-    #status { color: #a00; margin-top: 1rem; }
-  </style>
-</head>
-<body>
-  <h1>Food Menu</h1>
-
-  <table id="foodTable">
-    <thead>
-      <tr><th>ID</th><th>Name</th><th>Price</th></tr>
-    </thead>
-    <tbody id="foodTableBody"></tbody>
-  </table>
-
-  <p id="status"></p>
-
-  <footer style="margin-top: 2rem; font-size: 0.85rem; color: #666;">
-    <em>Disclaimer: This application is for demonstration of a student's web development skills only.</em>
-  </footer>
-
-  <script>
-    const tableBody = document.getElementById("foodTableBody");
-    const statusEl = document.getElementById("status");
-
-    async function fetchFoods() {
-      try {
-        const response = await fetch("/foods");
-        if (!response.ok) throw new Error(`Server responded with status ${response.status}`);
-
-        const foods = await response.json();
-        tableBody.innerHTML = "";
-
-        foods.forEach((food) => {
-          const row = document.createElement("tr");
-
-          const idCell = document.createElement("td");
-          idCell.textContent = food.id;
-
-          const nameCell = document.createElement("td");
-          nameCell.textContent = food.name;
-
-          const priceCell = document.createElement("td");
-          priceCell.textContent = `$${food.price.toFixed(2)}`;
-
-          row.appendChild(idCell);
-          row.appendChild(nameCell);
-          row.appendChild(priceCell);
-          tableBody.appendChild(row);
-        });
-      } catch (err) {
-        console.error("Failed to load foods:", err);
-        statusEl.textContent = "Could not load the food menu. Please try again later.";
+  <head>
+    <meta charset="UTF-8" />
+    <title>Food Menu - Backend POC</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        margin: 2rem;
       }
-    }
+      table {
+        border-collapse: collapse;
+        width: 100%;
+        max-width: 500px;
+      }
+      th,
+      td {
+        border: 1px solid #ccc;
+        padding: 8px 12px;
+        text-align: left;
+      }
+      th {
+        background-color: #f0f  0f0;
+      }
+      #status {
+        color: #a00;
+        margin-top: 1rem;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Food Menu</h1>
 
-    fetchFoods();
-  </script>
-</body>
+    <table id="foodTable">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Name</th>
+          <th>Price</th>
+        </tr>
+      </thead>
+      <tbody id="foodTableBody"></tbody>
+    </table>
+
+    <p id="status"></p>
+
+    <footer style="margin-top: 2rem; font-size: 0.85rem; color: #666">
+      <em
+        >Disclaimer: This application is for demonstration of a student's web
+        development skills only.</em
+      >
+    </footer>
+
+    <script>
+        // Fetch and display food items from the server
+      const tableBody = document.getElementById("foodTableBody");
+      const statusEl = document.getElementById("status");
+// Function to fetch food items from the server and populate the table
+      async function fetchFoods() {
+        try {
+          const response = await fetch("/foods");
+          if (!response.ok)
+            throw new Error(`Server responded with status ${response.status}`);
+
+          const foods = await response.json();
+          tableBody.innerHTML = "";
+
+          foods.forEach((food) => {
+            const row = document.createElement("tr");
+
+            const idCell = document.createElement("td");
+            idCell.textContent = food.id;
+
+            const nameCell = document.createElement("td");
+            nameCell.textContent = food.name;
+
+            const priceCell = document.createElement("td");
+            priceCell.textContent = `$${food.price.toFixed(2)}`;
+// Append cells to the row and the row to the table body
+            row.appendChild(idCell);
+            row.appendChild(nameCell);
+            row.appendChild(priceCell);
+            tableBody.appendChild(row);
+          });
+        } catch (err) {
+          console.error("Failed to load foods:", err);
+          statusEl.textContent =
+            "Could not load the food menu. Please try again later.";
+        }
+      }
+
+      fetchFoods();
+    </script>
+  </body>
 </html>
